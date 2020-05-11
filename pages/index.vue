@@ -3,7 +3,7 @@
     <div>
       <logo />
       <h1 class="title">
-        TODO-Practice for SLC
+        TODO-Practice for SLC-Agilers
       </h1>
       <h2 class="subtitle">
         My splendid Nuxt.js project

@@ -3,11 +3,18 @@
     <h1 class="title">
       TO DO リスト
     </h1>
+    {{ task.title }}
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+export default {
+  data: () => ({
+    task: {
+      title: '仮タスクタイトル'
+    }
+  })
+}
 </script>
 
 <style>

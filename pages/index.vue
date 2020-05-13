@@ -3,16 +3,21 @@
     <h1 class="title">
       TO DO リスト
     </h1>
-    {{ task.title }}
+    <ul>
+      <li v-for="task in tasks">{{ task.title }}</li>
+    </ul>
   </div>
 </template>
 
 <script lang="ts">
 export default {
   data: () => ({
-    task: {
-      title: '仮タスクタイトル'
-    }
+    tasks: [
+      { title: '仮タスクタイトル1' },
+      { title: '仮タスクタイトル2' },
+      { title: '仮タスクタイトル3' },
+      { title: '仮タスクタイトル4' }
+    ]
   })
 }
 </script>

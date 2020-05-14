@@ -1,13 +1,30 @@
 <template>
-  <div>
-    <h1 class="title">
-      TO DO リスト
+  <div class="text-center container mx-auto">
+    <h1 class="font-semibold text-4xl text-blue-500">
+      ＴＯ ＤＯ リスト
     </h1>
+
+    <input
+      v-model="newTaskTitle"
+      class="shadow appearance-none border rounded py-2 px-3 text-gray-600 my-4"
+      type="text"
+      name="task-title"
+    />
+    <button
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      @click="addTask"
+    >
+      追加
+    </button>
+
     <ul>
-      <li v-for="task in tasks">{{ task.title }}</li>
+      <li
+        v-for="task in tasks"
+        class="py-2 px-8 border border-gray-400 text-gray-600 mx-auto w-64"
+      >
+        {{ task.title }}
+      </li>
     </ul>
-    <input v-model="newTaskTitle" type="text" name="task-title" />
-    <button @click="addTask">追加</button>
   </div>
 </template>
 

@@ -6,10 +6,12 @@
     <ul>
       <li v-for="task in tasks">{{ task.title }}</li>
     </ul>
+    <input v-model="newTaskTitle" type="text" name="task-title" />
+    <button @click="addTask">追加</button>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 export default {
   data: () => ({
     tasks: [
@@ -17,8 +19,17 @@ export default {
       { title: '仮タスクタイトル2' },
       { title: '仮タスクタイトル3' },
       { title: '仮タスクタイトル4' }
-    ]
-  })
+    ],
+    newTaskTitle: ''
+  }),
+  methods: {
+    addTask() {
+      this.tasks.push({
+        title: this.newTaskTitle
+      })
+      this.newTaskTitle = ''
+    }
+  }
 }
 </script>
 

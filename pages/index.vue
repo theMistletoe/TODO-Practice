@@ -25,7 +25,6 @@
         class="py-2 px-8 border border-gray-400 text-gray-600 mx-auto w-64"
       >
         {{ task.title }}
-        {{ task.detail }}
       </li>
     </ul>
   </div>

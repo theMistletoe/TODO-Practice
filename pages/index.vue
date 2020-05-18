@@ -6,6 +6,7 @@
 
     <input
       v-model="newTaskTitle"
+      v-on:keyup.enter="addTask"
       class="shadow appearance-none border rounded py-2 px-3 text-gray-600 my-4"
       type="text"
       name="task-title"

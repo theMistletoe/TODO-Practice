@@ -6,6 +6,7 @@
 
     <input
       v-model="newTaskTitle"
+      ref="inputTask"
       v-on:keyup.enter="addTask"
       class="shadow appearance-none border rounded py-2 px-3 text-gray-600 my-4"
       type="text"
@@ -42,10 +43,13 @@ export default {
   }),
   methods: {
     addTask() {
-      this.tasks.push({
-        title: this.newTaskTitle
-      })
-      this.newTaskTitle = ''
+      if (this.newTaskTitle != '') {
+        this.tasks.push({
+          title: this.newTaskTitle
+        })
+        this.newTaskTitle = ''
+      }
+      this.$refs.inputTask.focus()
     }
   }
 }

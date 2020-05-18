@@ -24,7 +24,7 @@
         v-for="task in tasks"
         class="py-2 px-8 border border-gray-400 text-gray-600 mx-auto w-64"
       >
-        <n-link to="detail">
+        <n-link to="detail" class="text-blue-400 hover:text-blue-700">
           {{ task.title }}
         </n-link>
       </li>

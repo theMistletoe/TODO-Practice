@@ -25,6 +25,7 @@
         class="py-2 px-8 border border-gray-400 text-gray-600 mx-auto w-64"
       >
         {{ task.title }}
+        {{ task.detail }}
       </li>
     </ul>
   </div>
@@ -34,10 +35,10 @@
 export default {
   data: () => ({
     tasks: [
-      { title: '仮タスクタイトル1' },
-      { title: '仮タスクタイトル2' },
-      { title: '仮タスクタイトル3' },
-      { title: '仮タスクタイトル4' }
+      { title: '仮タスクタイトル1', detail: '仮タスクタイトル1詳細' },
+      { title: '仮タスクタイトル2', detail: '仮タスクタイトル2詳細' },
+      { title: '仮タスクタイトル3', detail: '仮タスクタイトル3詳細' },
+      { title: '仮タスクタイトル4', detail: '仮タスクタイトル4詳細' }
     ],
     newTaskTitle: ''
   }),

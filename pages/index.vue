@@ -43,7 +43,7 @@ export default {
   }),
   methods: {
     addTask() {
-      if (this.newTaskTitle != '') {
+      if (this.newTaskTitle !== '') {
         this.tasks.push({
           title: this.newTaskTitle
         })

@@ -1,19 +1,18 @@
 <template>
-  <section class="container">
-    <div>
-      <component :is="currentView"></component>
-    </div>
+  <section class="container mx-auto">
+    <List v-if="currentView === 'list'" @task-button-click="displayDetail" />
+    <Detail v-if="currentView === 'detail'" />
   </section>
 </template>
 
 <script>
-import list from '~/components/list.vue'
-import detail from '~/components/detail.vue'
+import List from '~/components/list.vue'
+import Detail from '~/components/detail.vue'
 
 export default {
   components: {
-    list,
-    detail
+    List,
+    Detail
   },
   data() {
     return {
@@ -21,10 +20,10 @@ export default {
     }
   },
   methods: {
-    view1() {
+    displayList() {
       this.currentView = 'list'
     },
-    view2() {
+    displayDetail() {
       this.currentView = 'detail'
     }
   }

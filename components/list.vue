@@ -3,7 +3,6 @@
     <h1 class="font-semibold text-4xl text-blue-500">
       ＴＯ ＤＯ リスト
     </h1>
-
     <input
       v-model="newTaskTitle"
       ref="inputTask"
@@ -24,9 +23,12 @@
         v-for="task in tasks"
         class="py-2 px-8 border border-gray-400 text-gray-600 mx-auto w-64"
       >
-        <n-link to="detail" class="text-blue-400 hover:text-blue-700">
+        <button
+          @click="displayDetail"
+          class="text-blue-400 hover:text-blue-700"
+        >
           {{ task.title }}
-        </n-link>
+        </button>
       </li>
     </ul>
   </div>
@@ -52,6 +54,9 @@ export default {
         this.newTaskTitle = ''
       }
       this.$refs.inputTask.focus()
+    },
+    displayDetail() {
+      this.$emit('task-button-click')
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <section class="container mx-auto">
     <List v-if="currentView === 'list'" @task-button-click="displayDetail" />
-    <Detail v-if="currentView === 'detail'" />
+    <Detail v-if="currentView === 'detail'" @back-button-click="displayList" />
   </section>
 </template>
 

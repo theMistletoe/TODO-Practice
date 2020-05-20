@@ -21,13 +21,28 @@
     <ul>
       <li
         v-for="task in tasks"
-        class="py-2 px-8 border border-gray-400 text-gray-600 mx-auto w-64"
+        class="py-2 px-8 border border-gray-400 text-gray-600 mx-auto w-1/2 text-left"
       >
+        <div
+          v-if="!task.edit"
+          v-text="task.title"
+          v-on:click="task.edit = true"
+          class="inline-block"
+        ></div>
+        <input
+          v-if="task.edit"
+          v-auto-focus
+          type="text"
+          v-model="task.title"
+          @blur="task.edit = false"
+          @keydown.enter="task.edit = false"
+          class="inline-block"
+        />
         <button
-          class="text-blue-400 hover:text-blue-700"
+          class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           @click="displayDetail(task)"
         >
-          {{ task.title }}
+          詳細
         </button>
       </li>
     </ul>

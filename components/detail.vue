@@ -4,10 +4,12 @@
       ＴＯ ＤＯ リスト詳細
     </h1>
     <input
+      v-model="selectedTask.title"
       class="block shadow appearance-none border rounded py-2 px-3 text-gray-600 my-4 w-1/2 mx-auto"
       type="text"
     />
     <textarea
+      v-model="selectedTask.detail"
       class="block shadow appearance-none border rounded py-2 px-3
     text-gray-600 my-4 w-1/2 h-64 mx-auto"
     />
@@ -22,6 +24,7 @@
 
 <script>
 export default {
+  props: ['selectedTask'],
   methods: {
     displayList() {
       this.$emit('back-button-click')

@@ -4,12 +4,12 @@
       ＴＯ ＤＯ リスト
     </h1>
     <input
-      v-model="newTaskTitle"
       ref="inputTask"
-      v-on:keydown.enter="addTask"
+      v-model="newTaskTitle"
       class="shadow appearance-none border rounded py-2 px-3 text-gray-600 my-4"
       type="text"
       name="task-title"
+      @keydown.enter="addTask"
     />
     <button
       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -24,8 +24,8 @@
         class="py-2 px-8 border border-gray-400 text-gray-600 mx-auto w-64"
       >
         <button
-          @click="displayDetail"
           class="text-blue-400 hover:text-blue-700"
+          @click="displayDetail(task)"
         >
           {{ task.title }}
         </button>
@@ -46,8 +46,8 @@ export default {
       this.newTaskTitle = ''
       this.$refs.inputTask.focus()
     },
-    displayDetail() {
-      this.$emit('task-button-click')
+    displayDetail(task) {
+      this.$emit('task-button-click', task)
     }
   }
 }

@@ -2,11 +2,15 @@
   <section class="container mx-auto">
     <List
       v-if="currentView === 'list'"
+      :tasks="tasks"
       @task-button-click="displayDetail"
       @task-add="addTask"
-      :tasks="tasks"
     />
-    <Detail v-if="currentView === 'detail'" @back-button-click="displayList" />
+    <Detail
+      v-if="currentView === 'detail'"
+      :selected-task="selectedTask"
+      @back-button-click="displayList"
+    />
   </section>
 </template>
 
@@ -27,7 +31,8 @@ export default {
         { title: '仮タスクタイトル2', detail: '仮タスクタイトル2詳細' },
         { title: '仮タスクタイトル3', detail: '仮タスクタイトル3詳細' },
         { title: '仮タスクタイトル4', detail: '仮タスクタイトル4詳細' }
-      ]
+      ],
+      selectedTask: { title: '', detail: '' }
     }
   },
   methods: {
@@ -41,7 +46,8 @@ export default {
     displayList() {
       this.currentView = 'list'
     },
-    displayDetail() {
+    displayDetail(task) {
+      this.selectedTask = task
       this.currentView = 'detail'
     }
   }

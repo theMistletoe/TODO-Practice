@@ -63,7 +63,7 @@ export default {
       this.$emit('task-button-click', task)
     },
     focusOut(task) {
-      let index = this.tasks.indexOf(task)
+      const index = this.tasks.indexOf(task)
       this.$refs.inputTitle[index].blur()
     },
     deleteListTask(task) {

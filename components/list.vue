@@ -21,13 +21,13 @@
     <ul>
       <li
         v-for="task in tasks"
-        class="py-2 px-8 border border-gray-400 text-gray-600 mx-auto w-1/2 text-left"
+        class="py-2 px-8 border border-gray-400 text-gray-600 mx-auto w-1/2 text-left flex"
       >
         <div
           v-if="!task.edit"
           v-text="task.title"
           v-on:click="task.edit = true"
-          class="inline-block"
+          class="inline-block flex-auto py-2"
         ></div>
         <input
           v-if="task.edit"
@@ -36,7 +36,7 @@
           v-model="task.title"
           @blur="task.edit = false"
           @keydown.enter="task.edit = false"
-          class="inline-block"
+          class="inline-block flex-auto px-2 py-2 block shadow appearance-none border rounded text-gray-600 w-1/2 mx-auto"
         />
         <button
           class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

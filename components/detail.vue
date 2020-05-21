@@ -19,6 +19,12 @@
     >
       戻る
     </button>
+    <button
+      class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 mx-4 rounded"
+      @click="deleteDetailTask"
+    >
+      削除
+    </button>
   </div>
 </template>
 
@@ -27,6 +33,10 @@ export default {
   props: ['selectedTask'],
   methods: {
     displayList() {
+      this.$emit('back-button-click')
+    },
+    deleteDetailTask(clickevent) {
+      this.$emit('detail-task-delete', this.selectedTask)
       this.$emit('back-button-click')
     }
   }

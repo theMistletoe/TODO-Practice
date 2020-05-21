@@ -36,6 +36,12 @@
         >
           詳細
         </button>
+        <button
+          class="inline-block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 mx-2 rounded"
+          @click="deleteListTask(task)"
+        >
+          削除
+        </button>
       </li>
     </ul>
   </div>
@@ -60,6 +66,9 @@ export default {
     focusOut(task) {
       this.index = this.tasks.indexOf(task)
       this.$refs.inputTitle[this.index].blur()
+    },
+    deleteListTask(task) {
+      this.$emit('list-task-delete', task)
     }
   }
 }

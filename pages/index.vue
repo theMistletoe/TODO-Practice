@@ -5,13 +5,13 @@
       :tasks="tasks"
       @task-button-click="displayDetail"
       @task-add="addTask"
-      @list-task-delete="deleteListTask"
+      @list-task-delete="deleteTask"
     />
     <Detail
       v-if="currentView === 'detail'"
       :selected-task="selectedTask"
       @back-button-click="displayList"
-      @detail-task-delete="deleteDetailTask"
+      @detail-task-delete="deleteTask"
     />
   </section>
 </template>
@@ -46,8 +46,7 @@ export default {
           detail: '仮タスクタイトル4詳細'
         }
       ],
-      selectedTask: { title: '', detail: '' },
-      index: ''
+      selectedTask: { title: '', detail: '' }
     }
   },
   methods: {
@@ -65,13 +64,9 @@ export default {
       this.selectedTask = task
       this.currentView = 'detail'
     },
-    deleteListTask(task) {
-      this.index = this.tasks.indexOf(task)
-      this.tasks.splice(this.index, 1)
-    },
-    deleteDetailTask(deleteTask) {
-      this.index = this.tasks.indexOf(deleteTask)
-      this.tasks.splice(this.index, 1)
+    deleteTask(task) {
+      let index = this.tasks.indexOf(task)
+      this.tasks.splice(index, 1)
     }
   }
 }

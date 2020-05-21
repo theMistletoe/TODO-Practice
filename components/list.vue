@@ -51,8 +51,7 @@
 export default {
   props: ['tasks'],
   data: () => ({
-    newTaskTitle: '',
-    index: ''
+    newTaskTitle: ''
   }),
   methods: {
     addTask(clickevent) {
@@ -64,8 +63,8 @@ export default {
       this.$emit('task-button-click', task)
     },
     focusOut(task) {
-      this.index = this.tasks.indexOf(task)
-      this.$refs.inputTitle[this.index].blur()
+      let index = this.tasks.indexOf(task)
+      this.$refs.inputTitle[index].blur()
     },
     deleteListTask(task) {
       this.$emit('list-task-delete', task)

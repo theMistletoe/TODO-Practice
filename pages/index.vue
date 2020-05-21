@@ -29,23 +29,19 @@ export default {
       tasks: [
         {
           title: '仮タスクタイトル1',
-          detail: '仮タスクタイトル1詳細',
-          edit: false
+          detail: '仮タスクタイトル1詳細'
         },
         {
           title: '仮タスクタイトル2',
-          detail: '仮タスクタイトル2詳細',
-          edit: false
+          detail: '仮タスクタイトル2詳細'
         },
         {
           title: '仮タスクタイトル3',
-          detail: '仮タスクタイトル3詳細',
-          edit: false
+          detail: '仮タスクタイトル3詳細'
         },
         {
           title: '仮タスクタイトル4',
-          detail: '仮タスクタイトル4詳細',
-          edit: false
+          detail: '仮タスクタイトル4詳細'
         }
       ],
       selectedTask: { title: '', detail: '' }
@@ -55,8 +51,7 @@ export default {
     addTask(newTaskTitle) {
       if (newTaskTitle !== '') {
         this.tasks.push({
-          title: newTaskTitle,
-          edit: false
+          title: newTaskTitle
         })
       }
     },

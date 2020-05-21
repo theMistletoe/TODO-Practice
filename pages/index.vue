@@ -27,10 +27,22 @@ export default {
     return {
       currentView: 'list',
       tasks: [
-        { title: '仮タスクタイトル1', detail: '仮タスクタイトル1詳細' },
-        { title: '仮タスクタイトル2', detail: '仮タスクタイトル2詳細' },
-        { title: '仮タスクタイトル3', detail: '仮タスクタイトル3詳細' },
-        { title: '仮タスクタイトル4', detail: '仮タスクタイトル4詳細' }
+        {
+          title: '仮タスクタイトル1',
+          detail: '仮タスクタイトル1詳細'
+        },
+        {
+          title: '仮タスクタイトル2',
+          detail: '仮タスクタイトル2詳細'
+        },
+        {
+          title: '仮タスクタイトル3',
+          detail: '仮タスクタイトル3詳細'
+        },
+        {
+          title: '仮タスクタイトル4',
+          detail: '仮タスクタイトル4詳細'
+        }
       ],
       selectedTask: { title: '', detail: '' }
     }

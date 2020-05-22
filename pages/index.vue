@@ -5,11 +5,13 @@
       :tasks="tasks"
       @task-button-click="displayDetail"
       @task-add="addTask"
+      @list-task-delete="deleteTask"
     />
     <Detail
       v-if="currentView === 'detail'"
       :selected-task="selectedTask"
       @back-button-click="displayList"
+      @detail-task-delete="deleteTask"
     />
   </section>
 </template>
@@ -61,6 +63,10 @@ export default {
     displayDetail(task) {
       this.selectedTask = task
       this.currentView = 'detail'
+    },
+    deleteTask(task) {
+      const index = this.tasks.indexOf(task)
+      this.tasks.splice(index, 1)
     }
   }
 }

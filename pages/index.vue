@@ -36,7 +36,10 @@ export default {
   watch: {
     tasks: {
       handler(tasks) {
+        console.log('watch_index')
         taskStorage.save(tasks)
+        console.log(tasks)
+        console.log('saved')
       },
       deep: true
     }

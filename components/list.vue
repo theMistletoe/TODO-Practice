@@ -30,12 +30,22 @@
           @keydown.enter="focusOut(task)"
           class="inline-block flex-auto px-2 py-2 block focus:shadow appearance-none focus:border focus:rounded text-gray-600 w-1/2 mx-auto"
         />
+        <!--
         <button
           class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           @click="displayDetail(task)"
         >
           詳細
         </button>
+        -->
+        <nuxt-link to="/detail/1">
+          <button
+            class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            詳細
+          </button>
+        </nuxt-link>
+
         <button
           class="inline-block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 mx-2 rounded"
           @click="deleteListTask(task)"
@@ -44,10 +54,13 @@
         </button>
       </li>
     </ul>
+    {{ detail }}
   </div>
 </template>
 
 <script>
+import detail from '~/pages/detail/_detail'
+
 export default {
   props: ['tasks'],
   data: () => ({

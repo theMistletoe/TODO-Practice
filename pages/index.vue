@@ -19,6 +19,7 @@
 <script>
 import List from '~/components/list.vue'
 import Detail from '~/components/detail.vue'
+import taskStorage from '~/store/index'
 
 export default {
   components: {
@@ -31,6 +32,17 @@ export default {
       currentView: 'list',
       selectedTask: { title: '', detail: '' }
     }
+  },
+  watch: {
+    tasks: {
+      handler(tasks) {
+        taskStorage.save(tasks)
+      },
+      deep: true
+    }
+  },
+  created() {
+    this.tasks = taskStorage.fetch()
   },
   methods: {
     addTask(newTaskTitle) {

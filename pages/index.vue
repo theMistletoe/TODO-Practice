@@ -20,17 +20,6 @@
 import List from '~/components/list.vue'
 import Detail from '~/components/detail.vue'
 
-const STORAGE_KEY = 'TODO-List'
-const taskStorage = {
-  fetch() {
-    const tasks = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
-    return tasks
-  },
-  save(tasks) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks))
-  }
-}
-
 export default {
   components: {
     List,
@@ -42,17 +31,6 @@ export default {
       currentView: 'list',
       selectedTask: { title: '', detail: '' }
     }
-  },
-  watch: {
-    tasks: {
-      handler(tasks) {
-        taskStorage.save(tasks)
-      },
-      deep: true
-    }
-  },
-  created() {
-    this.tasks = taskStorage.fetch()
   },
   methods: {
     addTask(newTaskTitle) {

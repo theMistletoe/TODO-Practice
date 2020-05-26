@@ -37,8 +37,9 @@ import taskStorage from '~/store/index'
 
 export default {
   data() {
+     console.log('============data')
     return {
-      tasks: [],
+      tasks: taskStorage.fetch(),
       selectedTask: { title: '', detail: '', id: '' }
     }
   },
@@ -50,12 +51,14 @@ export default {
   watch: {
     tasks: {
       handler(tasks) {
+        console.log('============test')
         taskStorage.save(tasks)
       },
       deep: true
     }
   },
   created() {
+    console.log('============created')
     this.tasks = taskStorage.fetch()
     const id = this.$route.params.detail
 

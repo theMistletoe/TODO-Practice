@@ -52,7 +52,7 @@ export default {
   },
   created() {
     this.tasks = taskStorage.fetch()
-    const id = this.$route.params.detail
+    const id = this.$route.query.id
 
     this.selectedTask = this.tasks.find((task) => {
       return task.id === id

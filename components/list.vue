@@ -32,8 +32,8 @@
         />
         <nuxt-link
           :to="{
-            name: 'detail-detail',
-            params: { detail: task.id }
+            path: '/detail/',
+            query: { id: task.id }
           }"
         >
           <button

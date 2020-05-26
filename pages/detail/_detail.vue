@@ -42,15 +42,10 @@ export default {
       selectedTask: { title: '', detail: '', id: '' }
     }
   },
-  computed: {
-    detail() {
-      return this.$route.params.detail
-    }
-  },
   watch: {
     tasks: {
-      handler(tasks) {
-        taskStorage.save(tasks)
+      handler() {
+        taskStorage.save(this.tasks)
       },
       deep: true
     }
@@ -67,7 +62,6 @@ export default {
     deleteDetailTask(clickevent) {
       const index = this.tasks.indexOf(this.selectedTask)
       this.tasks.splice(index, 1)
-      taskStorage.save(this.tasks)
     }
   }
 }

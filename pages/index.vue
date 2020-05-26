@@ -1,45 +1,26 @@
 <template>
   <section class="container mx-auto">
-    <List
-      v-if="currentView === 'list'"
-      :tasks="tasks"
-      @task-button-click="displayDetail"
-      @task-add="addTask"
-      @list-task-delete="deleteTask"
-    />
-    <Detail
-      v-if="currentView === 'detail'"
-      :selected-task="selectedTask"
-      @back-button-click="displayList"
-      @detail-task-delete="deleteTask"
-    />
+    <List :tasks="tasks" @task-add="addTask" @list-task-delete="deleteTask" />
   </section>
 </template>
 
 <script>
 import List from '~/components/list.vue'
-import Detail from '~/components/detail.vue'
 import taskStorage from '~/store/index'
 
 export default {
   components: {
-    List,
-    Detail
+    List
   },
   data() {
     return {
-      tasks: [],
-      currentView: 'list',
-      selectedTask: { title: '', detail: '' }
+      tasks: []
     }
   },
   watch: {
     tasks: {
       handler(tasks) {
-        console.log('watch_index')
         taskStorage.save(tasks)
-        console.log(tasks)
-        console.log('saved')
       },
       deep: true
     }
@@ -54,13 +35,6 @@ export default {
           title: newTaskTitle
         })
       }
-    },
-    displayList() {
-      this.currentView = 'list'
-    },
-    displayDetail(task) {
-      this.selectedTask = task
-      this.currentView = 'detail'
     },
     deleteTask(task) {
       const index = this.tasks.indexOf(task)

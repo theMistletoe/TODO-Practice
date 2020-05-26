@@ -30,14 +30,6 @@
           @keydown.enter="focusOut(task)"
           class="inline-block flex-auto px-2 py-2 block focus:shadow appearance-none focus:border focus:rounded text-gray-600 w-1/2 mx-auto"
         />
-        <!--
-        <button
-          class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          @click="displayDetail(task)"
-        >
-          詳細
-        </button>
-        -->
         <nuxt-link
           :to="{
             name: 'detail-detail',
@@ -76,9 +68,6 @@ export default {
       this.$emit('task-add', this.newTaskTitle)
       this.newTaskTitle = ''
       this.$refs.inputTask.focus()
-    },
-    displayDetail(task) {
-      this.$emit('task-button-click', task)
     },
     focusOut(task) {
       const index = this.tasks.indexOf(task)

@@ -50,29 +50,20 @@ export default {
   watch: {
     tasks: {
       handler(tasks) {
-        console.log('watch_detail')
         taskStorage.save(tasks)
-        console.log(tasks)
-        console.log('saved')
       },
       deep: true
     }
   },
   created() {
-    console.log(this.$route.params.detail)
     this.tasks = taskStorage.fetch()
     this.selectedTask = this.tasks[this.$route.params.detail]
-    console.log(this.selectedTask)
   },
   methods: {
     deleteDetailTask(clickevent) {
-      console.log('deleteTasks_start')
-      console.log(this.tasks)
       const index = this.tasks.indexOf(this.selectedTask)
       this.tasks.splice(index, 1)
       taskStorage.save(this.tasks)
-      console.log(this.tasks)
-      console.log('deleteTasks_end')
     }
   }
 }

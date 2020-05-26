@@ -27,15 +27,22 @@
           ref="inputTitle"
           v-model="task.title"
           type="text"
-          @keydown.enter="focusOut(task)"
           class="inline-block flex-auto px-2 py-2 block focus:shadow appearance-none focus:border focus:rounded text-gray-600 w-1/2 mx-auto"
+          @keydown.enter="focusOut(task)"
         />
-        <button
-          class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          @click="displayDetail(task)"
+        <nuxt-link
+          :to="{
+            path: '/detail/',
+            query: { id: task.id }
+          }"
         >
-          詳細
-        </button>
+          <button
+            class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            詳細
+          </button>
+        </nuxt-link>
+
         <button
           class="inline-block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 mx-2 rounded"
           @click="deleteListTask(task)"
@@ -48,6 +55,13 @@
 </template>
 
 <script>
+function getUniqueStr() {
+  return (
+    new Date().getTime().toString(16) +
+    Math.floor(1000 * Math.random()).toString(16)
+  )
+}
+
 export default {
   props: ['tasks'],
   data: () => ({
@@ -55,12 +69,10 @@ export default {
   }),
   methods: {
     addTask(clickevent) {
-      this.$emit('task-add', this.newTaskTitle)
+      const id = getUniqueStr()
+      this.$emit('task-add', this.newTaskTitle, id)
       this.newTaskTitle = ''
       this.$refs.inputTask.focus()
-    },
-    displayDetail(task) {
-      this.$emit('task-button-click', task)
     },
     focusOut(task) {
       const index = this.tasks.indexOf(task)

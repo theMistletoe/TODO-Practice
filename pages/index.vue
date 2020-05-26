@@ -1,46 +1,20 @@
 <template>
   <section class="container mx-auto">
-    <List
-      v-if="currentView === 'list'"
-      :tasks="tasks"
-      @task-button-click="displayDetail"
-      @task-add="addTask"
-      @list-task-delete="deleteTask"
-    />
-    <Detail
-      v-if="currentView === 'detail'"
-      :selected-task="selectedTask"
-      @back-button-click="displayList"
-      @detail-task-delete="deleteTask"
-    />
+    <List :tasks="tasks" @task-add="addTask" @list-task-delete="deleteTask" />
   </section>
 </template>
 
 <script>
 import List from '~/components/list.vue'
-import Detail from '~/components/detail.vue'
-
-const STORAGE_KEY = 'TODO-List'
-const taskStorage = {
-  fetch() {
-    const tasks = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
-    return tasks
-  },
-  save(tasks) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks))
-  }
-}
+import taskStorage from '~/store/index'
 
 export default {
   components: {
-    List,
-    Detail
+    List
   },
   data() {
     return {
-      tasks: [],
-      currentView: 'list',
-      selectedTask: { title: '', detail: '' }
+      tasks: []
     }
   },
   watch: {
@@ -55,19 +29,13 @@ export default {
     this.tasks = taskStorage.fetch()
   },
   methods: {
-    addTask(newTaskTitle) {
+    addTask(newTaskTitle, id) {
       if (newTaskTitle !== '') {
         this.tasks.push({
-          title: newTaskTitle
+          title: newTaskTitle,
+          id: id
         })
       }
-    },
-    displayList() {
-      this.currentView = 'list'
-    },
-    displayDetail(task) {
-      this.selectedTask = task
-      this.currentView = 'detail'
     },
     deleteTask(task) {
       const index = this.tasks.indexOf(task)

@@ -18,9 +18,10 @@
       追加
     </button>
 
-    <ul>
+    <draggable tag="ul" @start="save">
       <li
         v-for="task in tasks"
+        :key="task.id"
         class="py-2 px-8 border border-gray-400 text-gray-600 mx-auto w-1/2 text-left flex"
       >
         <input
@@ -50,11 +51,15 @@
           削除
         </button>
       </li>
-    </ul>
+    </draggable>
+    {{ tasks }}
   </div>
 </template>
 
 <script>
+import draggable from 'vuedraggable'
+// import taskStorage from '~/store/index'
+
 function getUniqueStr() {
   return (
     new Date().getTime().toString(16) +
@@ -64,9 +69,21 @@ function getUniqueStr() {
 
 export default {
   props: ['tasks'],
+  components: { draggable },
   data: () => ({
     newTaskTitle: ''
   }),
+  // watch: {
+  //   tasks: {
+  //     handler() {
+  //       taskStorage.save(this.tasks)
+  //     },
+  //     deep: true
+  //   }
+  // },
+  // created() {
+  //   this.tasks = taskStorage.fetch()
+  // },
   methods: {
     addTask(clickevent) {
       const id = getUniqueStr()
@@ -80,6 +97,13 @@ export default {
     },
     deleteListTask(task) {
       this.$emit('list-task-delete', task)
+    },
+    save() {
+      console.log('save')
+      console.log(this.tasks[0].title)
+      console.log(this.tasks[1].title)
+      console.log(this.tasks[2].title)
+      // taskStorage.save(this.tasks)
     }
   }
 }

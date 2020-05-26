@@ -55,12 +55,10 @@
 </template>
 
 <script>
-function getUniqueStr(myStrong) {
-  let strong = 1000
-  if (myStrong) strong = myStrong
+function getUniqueStr() {
   return (
     new Date().getTime().toString(16) +
-    Math.floor(strong * Math.random()).toString(16)
+    Math.floor(1000 * Math.random()).toString(16)
   )
 }
 

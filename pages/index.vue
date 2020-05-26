@@ -29,10 +29,11 @@ export default {
     this.tasks = taskStorage.fetch()
   },
   methods: {
-    addTask(newTaskTitle) {
+    addTask(newTaskTitle, id) {
       if (newTaskTitle !== '') {
         this.tasks.push({
-          title: newTaskTitle
+          title: newTaskTitle,
+          id: id
         })
       }
     },

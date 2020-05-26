@@ -39,7 +39,7 @@ export default {
   data() {
     return {
       tasks: [],
-      selectedTask: { title: '', detail: '' }
+      selectedTask: { title: '', detail: '', id: '' }
     }
   },
   computed: {
@@ -57,7 +57,11 @@ export default {
   },
   created() {
     this.tasks = taskStorage.fetch()
-    this.selectedTask = this.tasks[this.$route.params.detail]
+    const id = this.$route.params.detail
+
+    this.selectedTask = this.tasks.find((task) => {
+      return task.id === id
+    })
   },
   methods: {
     deleteDetailTask(clickevent) {

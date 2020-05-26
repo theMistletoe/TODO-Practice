@@ -27,13 +27,13 @@
           ref="inputTitle"
           v-model="task.title"
           type="text"
-          @keydown.enter="focusOut(task)"
           class="inline-block flex-auto px-2 py-2 block focus:shadow appearance-none focus:border focus:rounded text-gray-600 w-1/2 mx-auto"
+          @keydown.enter="focusOut(task)"
         />
         <nuxt-link
           :to="{
             name: 'detail-detail',
-            params: { detail: tasks.indexOf(task) }
+            params: { detail: task.id }
           }"
         >
           <button
@@ -51,12 +51,18 @@
         </button>
       </li>
     </ul>
-    {{ detail }}
   </div>
 </template>
 
 <script>
-import detail from '~/pages/detail/_detail'
+function getUniqueStr(myStrong) {
+  let strong = 1000
+  if (myStrong) strong = myStrong
+  return (
+    new Date().getTime().toString(16) +
+    Math.floor(strong * Math.random()).toString(16)
+  )
+}
 
 export default {
   props: ['tasks'],
@@ -65,7 +71,8 @@ export default {
   }),
   methods: {
     addTask(clickevent) {
-      this.$emit('task-add', this.newTaskTitle)
+      const id = getUniqueStr()
+      this.$emit('task-add', this.newTaskTitle, id)
       this.newTaskTitle = ''
       this.$refs.inputTask.focus()
     },

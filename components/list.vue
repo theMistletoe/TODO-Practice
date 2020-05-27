@@ -52,7 +52,6 @@
         </button>
       </li>
     </draggable>
-    {{ tasks }}
   </div>
 </template>
 
@@ -85,8 +84,8 @@ function moveAt(tasks, oldIndex, newIndex) {
 
 export default {
   components: { draggable },
-  props: ['tasks'],
   data: () => ({
+    tasks: [],
     newTaskTitle: ''
   }),
   watch: {
@@ -103,7 +102,12 @@ export default {
   methods: {
     addTask(clickevent) {
       const id = getUniqueStr()
-      this.$emit('task-add', this.newTaskTitle, id)
+      if (this.newTaskTitle !== '') {
+        this.tasks.push({
+          title: this.newTaskTitle,
+          id: id
+        })
+      }
       this.newTaskTitle = ''
       this.$refs.inputTask.focus()
     },
@@ -112,7 +116,8 @@ export default {
       this.$refs.inputTitle[index].blur()
     },
     deleteListTask(task) {
-      this.$emit('list-task-delete', task)
+      const index = this.tasks.indexOf(task)
+      this.tasks.splice(index, 1)
     },
     draggableEnd(event) {
       moveAt(this.tasks, event.oldIndex, event.newIndex)

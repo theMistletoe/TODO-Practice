@@ -18,7 +18,7 @@
       追加
     </button>
 
-    <draggable tag="ul" @start="save">
+    <draggable tag="ul" @end="draggableEnd">
       <li
         v-for="task in tasks"
         :key="task.id"
@@ -58,7 +58,7 @@
 
 <script>
 import draggable from 'vuedraggable'
-// import taskStorage from '~/store/index'
+import taskStorage from '~/store/index'
 
 function getUniqueStr() {
   return (
@@ -67,23 +67,39 @@ function getUniqueStr() {
   )
 }
 
+function moveAt(tasks, oldIndex, newIndex) {
+  if (
+    oldIndex === newIndex ||
+    oldIndex > tasks.length - 1 ||
+    newIndex > tasks.length - 1
+  ) {
+    return tasks
+  }
+  const value = tasks[oldIndex]
+  const tail = tasks.slice(oldIndex + 1)
+  tasks.splice(oldIndex)
+  Array.prototype.push.apply(tasks, tail)
+  tasks.splice(newIndex, 0, value)
+  return tasks
+}
+
 export default {
-  props: ['tasks'],
   components: { draggable },
+  props: ['tasks'],
   data: () => ({
     newTaskTitle: ''
   }),
-  // watch: {
-  //   tasks: {
-  //     handler() {
-  //       taskStorage.save(this.tasks)
-  //     },
-  //     deep: true
-  //   }
-  // },
-  // created() {
-  //   this.tasks = taskStorage.fetch()
-  // },
+  watch: {
+    tasks: {
+      handler() {
+        taskStorage.save(this.tasks)
+      },
+      deep: true
+    }
+  },
+  created() {
+    this.tasks = taskStorage.fetch()
+  },
   methods: {
     addTask(clickevent) {
       const id = getUniqueStr()
@@ -98,12 +114,8 @@ export default {
     deleteListTask(task) {
       this.$emit('list-task-delete', task)
     },
-    save() {
-      console.log('save')
-      console.log(this.tasks[0].title)
-      console.log(this.tasks[1].title)
-      console.log(this.tasks[2].title)
-      // taskStorage.save(this.tasks)
+    draggableEnd(event) {
+      moveAt(this.tasks, event.oldIndex, event.newIndex)
     }
   }
 }

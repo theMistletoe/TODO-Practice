@@ -22,7 +22,7 @@
       <li
         v-for="task in tasks"
         :key="task.id"
-        class="py-2 px-8 border border-gray-400 text-gray-600 mx-auto w-1/2 text-left flex"
+        class="py-2 px-8 border border-gray-400 text-gray-600 mx-auto w-1/2 text-left flex cursor-move"
       >
         <input
           ref="inputTitle"
@@ -95,8 +95,12 @@ export default {
       this.$refs.inputTask.focus()
     },
     focusOut(task) {
+      console.log('focusOut')
       const index = this.tasks.indexOf(task)
+      console.log(task.title)
+      console.log(index)
       this.$refs.inputTitle[index].blur()
+      console.log(this.$refs.inputTitle[index])
     },
     deleteListTask(task) {
       this.$emit('list-task-delete', task)

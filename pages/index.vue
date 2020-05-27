@@ -48,6 +48,7 @@ export default {
     },
     dragTask(tasks) {
       this.tasks = tasks
+      this.tasks = taskStorage.fetch()
     }
   }
 }

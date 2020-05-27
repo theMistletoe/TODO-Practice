@@ -52,13 +52,11 @@
         </button>
       </li>
     </draggable>
-    {{ tasks }}
   </div>
 </template>
 
 <script>
 import draggable from 'vuedraggable'
-import taskStorage from '~/store/index'
 
 function getUniqueStr() {
   return (
@@ -89,17 +87,6 @@ export default {
   data: () => ({
     newTaskTitle: ''
   }),
-  watch: {
-    tasks: {
-      handler() {
-        taskStorage.save(this.tasks)
-      },
-      deep: true
-    }
-  },
-  created() {
-    this.tasks = taskStorage.fetch()
-  },
   methods: {
     addTask(clickevent) {
       const id = getUniqueStr()
@@ -116,6 +103,7 @@ export default {
     },
     draggableEnd(event) {
       moveAt(this.tasks, event.oldIndex, event.newIndex)
+      this.$emit('drag-task', this.tasks)
     }
   }
 }

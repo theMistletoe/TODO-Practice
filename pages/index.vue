@@ -1,6 +1,11 @@
 <template>
   <section class="container mx-auto">
-    <List :tasks="tasks" @task-add="addTask" @list-task-delete="deleteTask" />
+    <List
+      :tasks="tasks"
+      @task-add="addTask"
+      @list-task-delete="deleteTask"
+      @drag-task="dragTask"
+    />
   </section>
 </template>
 
@@ -40,6 +45,9 @@ export default {
     deleteTask(task) {
       const index = this.tasks.indexOf(task)
       this.tasks.splice(index, 1)
+    },
+    dragTask(tasks) {
+      this.tasks = tasks
     }
   }
 }

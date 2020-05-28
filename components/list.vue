@@ -25,11 +25,10 @@
         class="py-2 px-8 border border-gray-400 text-gray-600 mx-auto w-1/2 text-left flex cursor-move"
       >
         <input
-          ref="inputTitle"
           v-model="task.title"
           type="text"
           class="inline-block flex-auto px-2 py-2 block focus:shadow appearance-none focus:border focus:rounded text-gray-600 w-1/2 mx-auto"
-          @keydown.enter="focusOut(task)"
+          @keydown.enter="focusOut"
         />
         <nuxt-link
           :to="{
@@ -94,13 +93,8 @@ export default {
       this.newTaskTitle = ''
       this.$refs.inputTask.focus()
     },
-    focusOut(task) {
-      console.log('focusOut')
-      const index = this.tasks.indexOf(task)
-      console.log(task.title)
-      console.log(index)
-      this.$refs.inputTitle[index].blur()
-      console.log(this.$refs.inputTitle[index])
+    focusOut(event) {
+      event.target.blur()
     },
     deleteListTask(task) {
       this.$emit('list-task-delete', task)

@@ -39,7 +39,11 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: ['@nuxtjs/sentry'],
+  sentry: {
+    dsn:
+      'https://89b92f0439bc45f2b99322df2b07bd15@o396000.ingest.sentry.io/5305742'
+  },
   /*
    ** Build configuration
    */

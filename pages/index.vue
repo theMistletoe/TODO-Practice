@@ -1,5 +1,5 @@
 <template>
-  <section class="container mx-auto">
+  <section class="text-center container mx-auto">
     <List
       :tasks="tasks"
       @task-add="addTask"

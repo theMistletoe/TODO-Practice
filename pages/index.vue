@@ -1,5 +1,13 @@
 <template>
   <section class="text-center container mx-auto">
+    <n-link to="/about">
+      <button
+        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 mx-4 rounded"
+        @click="deleteDetailTask"
+      >
+        About
+      </button>
+    </n-link>
     <List
       :tasks="tasks"
       @task-add="addTask"

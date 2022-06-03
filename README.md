@@ -1,6 +1,6 @@
 # TODO-Practice
 
-> My splendid Nuxt.js project
+> My splendid Nuxt.js projectxx
 
 ## Build Setup
 
